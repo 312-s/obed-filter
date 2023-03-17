@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@parcel/config-webextension": "^2.8.3"
+  },
+  "scripts": {
+    "start": "npx parcel watch manifest.json --host localhost --config @parcel/config-webextension",
+    "build": "npx parcel build manifest.json --dist-dir ./releas --config @parcel/config-webextension"
+  }
+}

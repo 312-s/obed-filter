@@ -1,0 +1,8 @@
+dist
+.parcel-cache
+.history
+.idea
+node_modules
+releas
+*.pem
+*.crx
