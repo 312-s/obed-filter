@@ -1,17 +1,25 @@
-import DomGenerator from './dom-generator.js';
-
 export default class GoToTop {
-    init() {
-        window.addEventListener('scroll', (event) => {
-            if (this.#isHidden() && window.scrollY > window.innerHeight) {
-                this.#show();
-            } else if (this.#isShown() && window.scrollY < window.innerHeight) {
-                this.#hide();
-            }
-        });
+    #button;
 
-        this.#injectButton()
+    #place = document.body;
+
+    #hiddenClass = 'go-to-top__hidden';
+
+    #shownClass = 'go-to-top__shown';
+
+    constructor() {
+        this.#button = GoToTop.generateGoToTopButton();
+        this.#injectButton();
+        window.addEventListener('scroll', this.#showHideButtonOnScroll);
     }
+
+    #showHideButtonOnScroll = () => {
+        if (this.#isHidden() && window.scrollY > window.innerHeight) {
+            this.#show();
+        } else if (this.#isShown() && window.scrollY < window.innerHeight) {
+            this.#hide();
+        }
+    };
 
     #injectButton() {
         this.#button.addEventListener('click', this.#onButtonClick);
@@ -21,7 +29,7 @@ export default class GoToTop {
 
     #onButtonClick = () => {
         window.scrollTo(0, 0);
-    }
+    };
 
     #hide() {
         this.#button.classList.add(this.#hiddenClass);
@@ -41,8 +49,12 @@ export default class GoToTop {
         return this.#button.classList.contains(this.#shownClass);
     }
 
-    #button = DomGenerator.generateGoToTopButton();
-    #place = document.body;
-    #hiddenClass = 'go-to-top__hidden';
-    #shownClass = 'go-to-top__shown';
+    static generateGoToTopButton() {
+        const button = document.createElement('button');
+
+        button.innerText = 'Вверх ⬆';
+        button.classList.add('ob-btn', 'go-to-top');
+
+        return button;
+    }
 }

@@ -1,12 +1,15 @@
 export default class Product {
     #cardNode;
+
+    #cardPriceSelector = '.ob-restaurantList__base-price';
+
     #price;
 
     constructor(cardNode) {
-        const cardPriceSelector = '.ob-restaurantList__base-price';
-
         this.#cardNode = cardNode;
-        this.#price = Number.parseInt(this.#cardNode.querySelector(cardPriceSelector).textContent);
+        const priceValue = this.#cardNode.querySelector(this.#cardPriceSelector).textContent;
+
+        this.#price = Number.parseInt(priceValue, 10);
     }
 
     hide() {
@@ -17,7 +20,7 @@ export default class Product {
         this.#cardNode.style.display = 'flex';
     }
 
-    order(order) {
+    setOrder(order) {
         this.#cardNode.style.order = order;
     }
 
