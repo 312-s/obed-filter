@@ -1,3 +1,5 @@
+![Preview of extension](preview.png)
+
 # О расширении
 
 **Obed Filter** - это **расширение** для браузера **Google Chrome**, добавляющие на страницы меню ресторанов сайта [obed.ru](https://www.obed.ru/) следующее:
